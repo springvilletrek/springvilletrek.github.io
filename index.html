@@ -1020,6 +1020,9 @@
             <span><span class="dot meeting"></span> Meeting / Activity</span>
             <span><span class="dot trek"></span> Trek</span>
         </div>
+        <div style="text-align:center; margin-top:0.75rem;">
+            <button class="btn" onclick="downloadICS()" style="font-size:0.85rem; padding:0.5rem 1.25rem;">Download Calendar (.ics)</button>
+        </div>
     </div>
 
     <h3>Preparation Meetings &amp; Activities</h3>
@@ -1663,6 +1666,49 @@
         };
 
         renderCal();
+
+        // ── ICS Download ──
+        window.downloadICS = function() {
+            var lines = [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'PRODID:-//Springville Stake//Trek 2026//EN',
+                'CALSCALE:GREGORIAN',
+                'METHOD:PUBLISH',
+                'X-WR-CALNAME:Springville Trek 2026'
+            ];
+
+            for (var i = 0; i < calEvents.length; i++) {
+                var ev = calEvents[i];
+                var mm = (ev.m + 1).toString();
+                if (mm.length < 2) mm = '0' + mm;
+                var dd = ev.d.toString();
+                if (dd.length < 2) dd = '0' + dd;
+                var dateStr = ev.y + '' + mm + '' + dd;
+                var uid = 'trek2026-' + dateStr + '-' + i + '@springvillestake';
+
+                lines.push('BEGIN:VEVENT');
+                lines.push('DTSTART;VALUE=DATE:' + dateStr);
+                lines.push('DTEND;VALUE=DATE:' + dateStr);
+                lines.push('SUMMARY:' + ev.label);
+                lines.push('DESCRIPTION:Springville Stake Trek 2026 – ' + ev.label);
+                lines.push('UID:' + uid);
+                lines.push('STATUS:CONFIRMED');
+                lines.push('END:VEVENT');
+            }
+
+            lines.push('END:VCALENDAR');
+
+            var blob = new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'springville-trek-2026.ics';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        };
     })();
 
     // ── Clothing tab switcher ──
