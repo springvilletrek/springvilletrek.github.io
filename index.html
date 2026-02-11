@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Springville Trek 2026 — Walk with Me</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════════
+           Springville Trek 2026
+           Design system matched to churchofjesuschrist.org
+           ═══════════════════════════════════════════════ */
+
+        /* ── Design Tokens ── */
+        :root {
+            --color-primary: #007da5;
+            --color-primary-hover: #003057;
+            --color-primary-active: #006184;
+            --color-text: #212225;
+            --color-text-secondary: #3a3d40;
+            --color-text-muted: #53575b;
+            --color-link: #157493;
+            --color-bg: #ffffff;
+            --color-bg-alt: #eff0f0;
+            --color-border: #e0e2e2;
+            --color-border-input: #878a8c;
+            --color-highlight: #ffb81c;
+            --font-sans: 'Noto Sans', Arial, Roboto, sans-serif;
+            --font-serif: 'Noto Serif', Georgia, serif;
+            --radius: 0.125rem;
+        }
+
+        /* ── Reset ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* ── Base ── */
+        html {
+            font: normal 400 100%/1.4 var(--font-sans);
+            text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+        body {
+            background: var(--color-bg);
+            color: var(--color-text);
+            margin: 0;
+        }
+        a {
+            color: var(--color-link);
+            text-decoration: none;
+            background-color: transparent;
+        }
+        a:hover, a:active {
+            text-decoration: underline;
+            text-decoration-color: var(--color-link);
+        }
+
+        /* ── Hero / Banner ── */
+        .hero {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+        .hero-img-wrap {
+            display: block;
+            width: 100%;
+            height: 30vh;
+            min-height: 280px;
+            max-height: 420px;
+            overflow: hidden;
+        }
+        .hero-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2.5rem 3rem;
+            background:
+                linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.45) 40%, rgba(0,0,0,.10) 70%, transparent 100%),
+                linear-gradient(0deg, rgba(0,0,0,.50) 0%, rgba(0,0,0,.10) 50%, transparent 100%);
+        }
+        .hero-accent {
+            width: 3.5rem;
+            height: 0.25rem;
+            background-color: var(--color-primary);
+            margin-bottom: 0.6rem;
+            display: inline-block;
+        }
+        .hero h1 {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 2.625rem;
+            line-height: 1.2;
+            letter-spacing: -0.03125rem;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0,0,0,.35);
+            margin-bottom: 0.25rem;
+        }
+        .hero .subtitle {
+            font-family: var(--font-sans);
+            font-weight: 300;
+            font-size: 1.25rem;
+            line-height: 1.2;
+            color: #fff;
+            text-shadow: 0 4px 8px rgba(0,0,0,.35);
+            margin-bottom: 0.35rem;
+        }
+        .hero .scripture {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,.88);
+            max-width: 520px;
+            line-height: 1.5;
+        }
+        .hero .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1.2rem;
+            background: #fff;
+            color: var(--color-primary);
+            font-family: var(--font-sans);
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.2;
+            padding: 0.25rem 1rem;
+            min-height: 2.5rem;
+            border: 0;
+            border-radius: var(--radius);
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color ease .3s, color ease .3s;
+            width: max-content;
+        }
+        .hero .hero-cta:hover {
+            background-color: var(--color-primary-hover);
+            color: #fff;
+            text-decoration: none;
+        }
+        .hero .hero-cta:active {
+            background-color: var(--color-primary-active);
+            color: #fff;
+        }
+
+        /* ── Navigation Tabs ── */
+        .hamburger {
+            display: none;
+            background: var(--color-bg);
+            border: none;
+            border-bottom: 1px solid var(--color-border);
+            padding: 0.75rem 1rem;
+            width: 100%;
+            cursor: pointer;
+            position: sticky;
+            top: 0;
+            z-index: 101;
+            align-items: center;
+            justify-content: space-between;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        .hamburger .ham-icon {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .hamburger .ham-icon span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--color-text);
+            border-radius: 1px;
+            transition: all .25s ease;
+        }
+        .hamburger.open .ham-icon span:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 4.5px);
+        }
+        .hamburger.open .ham-icon span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.open .ham-icon span:nth-child(3) {
+            transform: rotate(-45deg) translate(4px, -4.5px);
+        }
+        .tab-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0;
+            background: var(--color-bg);
+            padding: 0;
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding: 0.875rem 1.1rem;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            transition: all .15s ease;
+            line-height: 1.2;
+        }
+        .tab-btn:hover {
+            color: var(--color-link);
+            background: var(--color-bg-alt);
+            text-decoration: underline;
+            text-decoration-color: var(--color-link);
+        }
+        .tab-btn.active {
+            color: var(--color-text);
+            border-bottom-color: var(--color-primary);
+            background: transparent;
+            text-decoration: none;
+        }
+
+        /* ── Content Sections ── */
+        .section {
+            display: none;
+            max-width: 42rem;
+            width: 100%;
+            margin: 0 auto;
+            padding: 3rem 1rem 4rem;
+        }
+        .section.active { display: block; }
+
+        /* ── Section Headings ── */
+        .section h2 {
+            font-family: var(--font-sans);
+            font-weight: 300;
+            font-size: 2rem;
+            line-height: 1.2;
+            color: var(--color-text);
+            margin-bottom: 2rem;
+        }
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 3.5rem;
+            height: 0.25rem;
+            background-color: var(--color-primary);
+            margin-top: 0.75rem;
+        }
+        .section h3 {
+            font-family: var(--font-sans);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-text);
+            line-height: 1.2;
+            margin: 2rem 0 0.75rem;
+        }
+
+        /* ── Cards ── */
+        .card {
+            background: var(--color-bg);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--color-border);
+        }
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 0.35rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        .card p {
+            margin: 0.3rem 0;
+            color: #0D0F10;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* ── Buttons (CTA) ── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-primary-active);
+            color: #ffffff;
+            text-decoration: none;
+            font-family: var(--font-sans);
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.2;
+            padding: 0.25rem 1rem;
+            min-height: 2.5rem;
+            max-width: 18rem;
+            border: 0;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: background-color ease .3s;
+            margin: 0.75rem 0.5rem 0.5rem 0;
+        }
+        .btn:hover {
+            background-color: var(--color-primary);
+            color: #fff;
+            text-decoration: none;
+        }
+        .btn:active {
+            background-color: var(--color-primary-hover);
+            color: #fff;
+        }
+
+        /* ── Timeline ── */
+        .timeline { list-style: none; padding-left: 0; }
+        .timeline li {
+            position: relative;
+            padding: 1rem 0 1rem 2rem;
+            border-left: 2px solid var(--color-border);
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #0D0F10;
+        }
+        .timeline li::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 1.3rem;
+            width: 8px;
+            height: 8px;
+            background: var(--color-primary);
+            border-radius: 50%;
+        }
+        .timeline li strong {
+            color: var(--color-text);
+            font-weight: 700;
+        }
+
+        /* ── FAQ Accordion (Church-style details/summary) ── */
+        .faq-accordion {
+            border-top: 1px solid var(--color-border);
+            margin-top: 0.5rem;
+        }
+        .faq-accordion details {
+            border-bottom: 1px solid var(--color-border);
+        }
+        .faq-accordion details summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1.1rem 0;
+            cursor: pointer;
+            list-style: none;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 1.0625rem;
+            line-height: 1.35;
+            color: var(--color-text);
+            transition: color .2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .faq-accordion details summary::-webkit-details-marker { display: none; }
+        .faq-accordion details summary::marker { display: none; content: ''; }
+        .faq-accordion details summary:hover {
+            color: var(--color-link);
+            background: var(--color-bg-alt);
+        }
+        .faq-accordion details summary:hover span {
+        }
+        .faq-accordion details summary:active {
+            color: var(--color-primary-hover);
+        }
+        .faq-accordion details summary:active span {
+        }
+        .faq-accordion details summary:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+        .faq-accordion details summary .faq-chevron {
+            flex-shrink: 0;
+            width: 1.25rem;
+            height: 1.25rem;
+            color: var(--color-text-muted);
+            transition: transform .3s ease, color .2s ease;
+        }
+        .faq-accordion details summary:hover .faq-chevron {
+            color: var(--color-link);
+        }
+        .faq-accordion details[open] summary .faq-chevron {
+            transform: rotate(180deg);
+        }
+        .faq-accordion details .faq-answer {
+            padding: 0 1.5rem 1.25rem;
+            color: #0D0F10;
+            font-size: 1rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        .faq-accordion details .faq-answer a {
+            color: var(--color-link);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color .15s ease;
+        }
+        .faq-accordion details .faq-answer a:hover {
+            text-decoration: underline;
+            text-decoration-color: var(--color-link);
+            text-underline-offset: 0.15em;
+        }
+        .faq-accordion details .faq-answer a:active {
+            color: var(--color-primary-hover);
+        }
+
+        /* FAQ cards use border-bottom only */
+        .section .card + .card {
+            /* maintain spacing */
+        }
+
+        /* ── Contact Grid ── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 2rem;
+            row-gap: 1rem;
+        }
+        .contact-card {
+            background: var(--color-bg);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: all 1s ease;
+        }
+        .contact-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,.06);
+        }
+        .contact-card .name {
+            font-family: var(--font-sans);
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--color-text);
+        }
+        .contact-card .role {
+            font-size: 0.8125rem;
+            color: var(--color-text-muted);
+            margin: 0.25rem 0 0.5rem;
+            line-height: 1.4;
+        }
+        .contact-card .phone { font-size: 1rem; }
+        .contact-card .phone a {
+            color: var(--color-link);
+            font-weight: 600;
+        }
+
+        /* ── Packing Checklist ── */
+        .checklist { list-style: none; padding-left: 0; }
+        .checklist li {
+            padding: 0.5rem 0 0.5rem 0;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 1rem;
+            color: #0D0F10;
+            line-height: 1.6;
+        }
+        .checklist li::before {
+            content: "☐  ";
+            color: var(--color-primary);
+            font-weight: 700;
+        }
+
+        /* ── Clothing Tab Selector ── */
+        .clothing-tabs {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1.75rem;
+        }
+        .clothing-tab-btn {
+            flex: 1;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 1.1rem 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all .2s ease;
+            font-family: var(--font-sans);
+        }
+        .clothing-tab-btn:hover {
+            border-color: var(--color-primary);
+            background: #eaf6fa;
+        }
+        .clothing-tab-btn.active {
+            border-color: var(--color-primary);
+            background: #eaf6fa;
+            box-shadow: inset 0 -3px 0 var(--color-primary);
+        }
+        .clothing-tab-btn .ctab-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--color-text);
+            margin-bottom: 0.2rem;
+        }
+        .clothing-tab-btn .ctab-desc {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            line-height: 1.3;
+        }
+        .clothing-panel { display: none; }
+        .clothing-panel.active { display: block; }
+
+        /* ── Vendor / Resource Grid ── */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+        .resource-card {
+            display: block;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 1rem 1.25rem;
+            transition: all .2s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        .resource-card:hover {
+            box-shadow: 0 2px 12px rgba(0,0,0,.06);
+            border-color: var(--color-primary);
+            text-decoration: none;
+        }
+        .resource-card .rc-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--color-link);
+            margin-bottom: 0.15rem;
+        }
+        .resource-card:hover .rc-name {
+            text-decoration: underline;
+            text-decoration-color: var(--color-link);
+        }
+        .resource-card .rc-desc {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            line-height: 1.4;
+        }
+
+        /* ── Requirements Columns ── */
+        .req-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        .req-col h4 {
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+        .req-list {
+            list-style: none;
+            padding: 0;
+        }
+        .req-list li {
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--color-text-secondary);
+        }
+        .req-list li::before {
+            content: "\2713";
+            color: var(--color-primary);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .clothing-tabs { flex-direction: column; }
+            .resource-grid { grid-template-columns: 1fr; }
+            .req-columns { grid-template-columns: 1fr; }
+        }
+
+        /* ── Theme Image ── */
+        .theme-img {
+            width: 100%;
+            max-width: 100%;
+            border-radius: var(--radius);
+            margin: 1rem 0 1.5rem;
+            display: block;
+        }
+
+        /* ── Update Badge ── */
+        .update-badge {
+            display: inline-block;
+            background: var(--color-primary);
+            color: #fff;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            padding: 0.15rem 0.6rem;
+            border-radius: 2px;
+            margin-right: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            line-height: 1.4;
+        }
+        .update-badge.completed {
+            background: var(--color-bg-alt);
+            color: var(--color-text-muted);
+        }
+
+        /* ── Warning Card ── */
+        .card.card-warning {
+            border: 1px solid var(--color-border);
+            background: #fef9f5;
+        }
+        .card.card-warning h3 {
+            color: #9b2c2c;
+        }
+        .card.card-warning ul li {
+            color: var(--color-text-secondary);
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--color-text);
+            color: rgba(255,255,255,.55);
+            padding: 2.5rem 1.5rem 2rem;
+            font-size: 0.8125rem;
+            line-height: 1.5;
+        }
+        .footer-inner {
+            max-width: 42rem;
+            margin: 0 auto;
+        }
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,.15);
+            margin-bottom: 1.25rem;
+        }
+        .footer-brand .footer-title {
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+        .footer-brand .footer-theme {
+            font-style: italic;
+            font-size: 0.8125rem;
+            color: rgba(255,255,255,.6);
+        }
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .footer-col h4 {
+            color: rgba(255,255,255,.85);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-col ul li {
+            margin-bottom: 0.3rem;
+        }
+        .footer-col ul li a {
+            color: rgba(255,255,255,.6);
+            font-size: 0.8125rem;
+            text-decoration: none;
+            transition: color .15s ease;
+        }
+        .footer-col ul li a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer-bottom {
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,.4);
+        }
+        @media (max-width: 600px) {
+            .footer-top { flex-direction: column; gap: 1.25rem; }
+            .footer-links { flex-direction: column; gap: 1rem; }
+            footer { padding: 2rem 1rem 1.5rem; }
+        }
+
+        /* ── Calendar ── */
+        .calendar-wrap {
+            margin-bottom: 2rem;
+        }
+        .calendar-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        .calendar-nav button {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            width: 2.25rem;
+            height: 2.25rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            transition: all .15s ease;
+        }
+        .calendar-nav button:hover {
+            background: var(--color-bg-alt);
+            color: var(--color-primary);
+        }
+        .calendar-nav .cal-month-title {
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 1.125rem;
+            color: var(--color-text);
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        .calendar-grid .cal-header {
+            background: var(--color-primary);
+            color: #fff;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-align: center;
+            padding: 0.55rem 0;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .calendar-grid .cal-day {
+            position: relative;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            min-height: 3.2rem;
+            padding: 0.35rem 0.45rem;
+            font-size: 0.85rem;
+            color: var(--color-text);
+            line-height: 1.2;
+        }
+        .calendar-grid .cal-day.empty {
+            background: var(--color-bg-alt);
+        }
+        .calendar-grid .cal-day.today {
+            background: #eaf6fa;
+        }
+        .calendar-grid .cal-day.today .day-num {
+            background: var(--color-primary);
+            color: #fff;
+            border-radius: 50%;
+            width: 1.55rem;
+            height: 1.55rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .calendar-grid .cal-day .day-num {
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        .cal-event-dot {
+            display: block;
+            margin-top: 0.2rem;
+            width: 100%;
+            font-size: 0.6rem;
+            font-weight: 600;
+            line-height: 1.3;
+            padding: 0.1rem 0.2rem;
+            border-radius: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: default;
+        }
+        .cal-event-dot.type-meeting {
+            background: #dff0f7;
+            color: var(--color-primary);
+        }
+        .cal-event-dot.type-trek {
+            background: #fff3d6;
+            color: #7a5e0a;
+        }
+        .cal-legend {
+            display: flex;
+            gap: 1.25rem;
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+        .cal-legend span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        .cal-legend .dot {
+            width: 0.65rem;
+            height: 0.65rem;
+            border-radius: 2px;
+            display: inline-block;
+        }
+        .cal-legend .dot.meeting { background: #dff0f7; border: 1px solid var(--color-primary); }
+        .cal-legend .dot.trek { background: #fff3d6; border: 1px solid #c9a227; }
+
+        /* ── Responsive ── */
+        @media (min-width: 600px) {
+            .hero h1 { font-size: 2.625rem; }
+            .section h2 { font-size: 2rem; }
+        }
+        @media (max-width: 840px) {
+            .hero-overlay { padding: 2rem 1.5rem; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .resource-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            /* Hero */
+            .hero h1 { font-size: 1.75rem; }
+            .hero .subtitle { font-size: 0.95rem; }
+            .hero .scripture { font-size: 0.85rem; }
+            .hero-img-wrap { min-height: 220px; }
+            .hero-overlay { padding: 1.5rem 1rem; }
+            .hero .hero-cta { font-size: 0.9rem; min-height: 2.25rem; padding: 0.25rem 0.85rem; }
+
+            /* Tab bar — hamburger menu on mobile */
+            .hamburger {
+                display: flex;
+            }
+            .tab-bar {
+                display: none;
+                flex-direction: column;
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                border-bottom: 1px solid var(--color-border);
+                box-shadow: 0 4px 12px rgba(0,0,0,.08);
+            }
+            .tab-bar.open {
+                display: flex;
+            }
+            .tab-btn {
+                font-size: 0.9rem;
+                padding: 0.85rem 1.25rem;
+                white-space: nowrap;
+                flex-shrink: 0;
+                text-align: left;
+                border-bottom: none;
+                border-left: 3px solid transparent;
+            }
+            .tab-btn.active {
+                border-bottom: none;
+                border-left-color: var(--color-primary);
+                background: var(--color-bg-alt);
+            }
+            .tab-btn:hover {
+                background: var(--color-bg-alt);
+            }
+
+            /* Sections */
+            .section { padding: 1.5rem 0.85rem 2.5rem; }
+            .section h2 { font-size: 1.5rem; margin-bottom: 1.5rem; }
+            .section h3 { font-size: 1rem; margin: 1.5rem 0 0.6rem; }
+
+            /* Cards */
+            .card { padding: 1.1rem; }
+            .card h3 { font-size: 1.05rem; }
+            .card p { font-size: 0.92rem; }
+
+            /* Timeline */
+            .timeline li { font-size: 0.92rem; padding: 0.75rem 0 0.75rem 1.5rem; }
+
+            /* Checklist */
+            .checklist li { font-size: 0.92rem; padding: 0.4rem 0; }
+
+            /* Calendar */
+            .calendar-grid .cal-day { min-height: 2.4rem; padding: 0.2rem 0.2rem; }
+            .calendar-grid .cal-day .day-num { font-size: 0.68rem; }
+            .calendar-grid .cal-header { font-size: 0.6rem; padding: 0.4rem 0; }
+            .cal-event-dot { font-size: 0; padding: 0; height: 4px; margin-top: 0.15rem; border-radius: 2px; }
+
+            /* Clothing tabs */
+            .clothing-tabs { flex-direction: column; gap: 0.5rem; }
+            .clothing-tab-btn { padding: 0.85rem 0.75rem; text-align: left; }
+            .clothing-tab-btn .ctab-title { font-size: 0.92rem; }
+            .clothing-tab-btn .ctab-desc { font-size: 0.72rem; }
+            .resource-grid { grid-template-columns: 1fr; }
+            .req-columns { grid-template-columns: 1fr; gap: 1rem; }
+
+            /* FAQ */
+            .faq-accordion details summary { font-size: 0.95rem; padding: 0.9rem 0; }
+            .faq-accordion details .faq-answer { font-size: 0.92rem; padding: 0 1rem 1rem; }
+
+            /* Contact */
+            .contact-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+            .contact-card { padding: 1rem; }
+
+            /* Buttons */
+            .btn { font-size: 0.9rem; max-width: 100%; width: 100%; justify-content: center; }
+
+            /* Footer - handled in footer block */
+        }
+    </style>
+</head>
+<body>
+
+<!-- ════════════════════ HERO ════════════════════ -->
+<header class="hero">
+    <div class="hero-img-wrap">
+        <img src="hero.jpg"
+             alt="Walk with Me — 2026 Youth Theme">
+    </div>
+    <div class="hero-overlay">
+        <div class="hero-accent"></div>
+        <h1>Springville Trek 2026</h1>
+        <div class="subtitle">"Walk with Me" — June 15–18, 2026</div>
+        <div class="scripture">"And thou shalt abide in me, and I in you; therefore walk with me." Moses 6:34</div>
+        <a class="hero-cta" href="#" onclick="showTab('forms'); return false;">Register for Trek</a>
+    </div>
+</header>
+
+<!-- ════════════════════ TABS ════════════════════ -->
+<button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()">
+    <span id="hamLabel">Overview</span>
+    <div class="ham-icon">
+        <span></span><span></span><span></span>
+    </div>
+</button>
+<nav class="tab-bar" id="tabBar" role="tablist">
+    <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+    <button class="tab-btn" onclick="showTab('schedule')">Schedule &amp; Dates</button>
+    <button class="tab-btn" onclick="showTab('forms')">Forms &amp; Permissions</button>
+    <button class="tab-btn" onclick="showTab('prepare')">Prepare</button>
+    <button class="tab-btn" onclick="showTab('packing')">Packing</button>
+    <button class="tab-btn" onclick="showTab('clothing')">Clothing</button>
+    <button class="tab-btn" onclick="showTab('updates')">Updates</button>
+    <button class="tab-btn" onclick="showTab('contact')">Contact / FAQ</button>
+</nav>
+
+<!-- ════════════════════ OVERVIEW ════════════════════ -->
+<div id="overview" class="section active">
+    <h2>Overview</h2>
+
+    <div class="card">
+        <h3>Trek Theme — "Walk with Me"</h3>
+        <p><strong>Scripture:</strong> Moses 6:34 — <em>"And thou shalt abide in me, and I in you; therefore walk with me."</em></p>
+    </div>
+
+    <div class="card">
+        <h3>Trek Song</h3>
+        <p>"I Will Walk with Jesus"</p>
+    </div>
+
+    <div class="card">
+        <h3>What to Expect</h3>
+        <p>A <strong>4-day journey</strong> (June 15–18) where youth and leaders pull handcarts and experience pioneer life together, strengthening faith and building lasting friendships.</p>
+    </div>
+
+    <div class="card">
+        <h3>Trek Dates</h3>
+        <p><strong>June 15 – 18, 2026</strong></p>
+    </div>
+
+    <div class="card">
+        <h3>Who Can Attend</h3>
+        <p>Youth turning <strong>14 in 2026</strong> through <strong>graduating seniors</strong>.</p>
+    </div>
+
+    <div class="card">
+        <h3>Cost</h3>
+        <p><strong>No cost</strong> to individuals or wards.</p>
+    </div>
+</div>
+
+<!-- ════════════════════ SCHEDULE & DATES ════════════════════ -->
+<div id="schedule" class="section">
+    <h2>Schedule &amp; Dates</h2>
+
+    <div class="card">
+        <h3>Trek Dates</h3>
+        <p><strong>June 15 – 18, 2026</strong> (4 days)</p>
+    </div>
+
+    <!-- Month Calendar -->
+    <div class="calendar-wrap">
+        <div class="calendar-nav">
+            <button onclick="calNav(-1)" aria-label="Previous month">&#8249;</button>
+            <span class="cal-month-title" id="calTitle"></span>
+            <button onclick="calNav(1)" aria-label="Next month">&#8250;</button>
+        </div>
+        <div class="calendar-grid" id="calGrid"></div>
+        <div class="cal-legend">
+            <span><span class="dot meeting"></span> Meeting / Activity</span>
+            <span><span class="dot trek"></span> Trek</span>
+        </div>
+    </div>
+
+    <h3>Preparation Meetings &amp; Activities</h3>
+    <ul class="timeline">
+        <li><strong>February 18</strong> — Kickoff Meeting, 7:00 PM at the Stake Center. All youth ages 11–18 invited.</li>
+        <li><strong>March 18</strong> — Trek Stake Activity, 7:00 PM at the Stake Center. All youth ages 11–18 invited.</li>
+        <li><strong>April 22</strong> — Stake Trek Activity, 7:00 PM at the Stake Center. All youth ages 11–18 invited.</li>
+        <li><strong>May 13</strong> — Stake Trek Activity, 7:00 PM at the Stake Center. Only youth who are going on trek.</li>
+        <li><strong>May 20</strong> — Committee Meeting. First half all combined, second half split into committees.</li>
+        <li><strong>TBD</strong> — Leaders Training Meeting. Date to be announced.</li>
+    </ul>
+</div>
+
+<!-- ════════════════════ FORMS & PERMISSIONS ════════════════════ -->
+<div id="forms" class="section">
+    <h2>Forms &amp; Permissions</h2>
+
+    <div class="card">
+        <h3>Trek Registration</h3>
+        <p>Fill out the online registration form to sign up for trek.</p>
+        <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLScAUzPmOMOC3P26hQVncJnTtPgwwScbykFLBt_c7ZXGdYrzjw/viewform" target="_blank" rel="noopener">
+            Open Registration Form
+        </a>
+    </div>
+
+    <div class="card">
+        <h3>Permission Slip</h3>
+        <p>A signed permission slip is required for all youth attending trek. Please download, print, sign, and return to your ward leader.</p>
+        <a class="btn" href="permission-slip.pdf" download>
+            Download Permission Slip
+        </a>
+    </div>
+
+    <div class="card">
+        <h3>Protecting Children &amp; Youth</h3>
+        <p>All leaders are required to complete the Church's youth protection training before participating in trek.</p>
+        <a class="btn" href="https://www.churchofjesuschrist.org/callings/safety/protecting-children-and-youth?lang=eng" target="_blank" rel="noopener">
+            Complete Training
+        </a>
+    </div>
+</div>
+
+<!-- ════════════════════ PREPARE ════════════════════ -->
+<div id="prepare" class="section">
+    <h2>How to Prepare</h2>
+
+    <div class="card">
+        <h3>Attend Preparation Meetings</h3>
+        <p>These meetings are essential to getting ready for trek. Mark your calendar:</p>
+    </div>
+
+    <ul class="timeline">
+        <li><strong>February 18</strong> — Kickoff Meeting, 7:00 PM at the Stake Center. All youth ages 11–18 invited.</li>
+        <li><strong>March 18</strong> — Trek Stake Activity, 7:00 PM at the Stake Center. All youth ages 11–18 invited.</li>
+        <li><strong>April 22</strong> — Stake Trek Activity, 7:00 PM at the Stake Center. All youth ages 11–18 invited.</li>
+        <li><strong>May 13</strong> — Stake Trek Activity, 7:00 PM at the Stake Center. Only youth who are going on trek.</li>
+        <li><strong>May 20</strong> — Committee Meeting. First half all combined, second half split into committees.</li>
+        <li><strong>TBD</strong> — Leaders Training Meeting. Date to be announced.</li>
+    </ul>
+
+    <div class="card" style="margin-top:1.2rem;">
+        <h3>Physical Preparation</h3>
+        <p>Trek involves walking several miles each day while pulling handcarts. Start preparing now by walking regularly and building endurance. Wear the shoes you plan to use on trek to break them in.</p>
+    </div>
+
+    <div class="card">
+        <h3>Spiritual Preparation</h3>
+        <p>Study the 2026 youth theme — <em>"Walk with Me"</em> (Moses 6:34). Learn about pioneer history and the sacrifices early Latter-day Saints made. Come with a willing heart and a desire to grow closer to the Savior.</p>
+    </div>
+</div>
+
+<!-- ════════════════════ PACKING ════════════════════ -->
+<div id="packing" class="section">
+    <h2>Packing List</h2>
+
+    <a class="btn" href="packing-list.html" target="_blank" rel="noopener" style="margin-bottom:1rem;">
+        Print / Download Packing List
+    </a>
+
+    <div class="card">
+        <h3>General Information</h3>
+        <ul style="margin-top:.5rem; padding-left:1.25rem;">
+            <li><strong>Put your name on everything</strong> with a permanent black marker.</li>
+            <li>Bring a <strong>sack lunch</strong> with you for the first day.</li>
+            <li>Because of weight and space limitations on the handcart, you are restricted to the items on the packing list.</li>
+        </ul>
+    </div>
+
+    <div class="faq-accordion">
+        <details open>
+            <summary>
+                <span>Packing List</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation"><path fill="currentColor" d="M11.462 16.223a.75.75 0 0 0 1.076 0l5.25-5.4a.75.75 0 0 0-1.076-1.046l-4.71 4.85-4.714-4.85a.75.75 0 1 0-1.076 1.046l5.25 5.4z"/></svg>
+            </summary>
+            <div class="faq-answer">
+                <ul class="checklist">
+                    <li>Pioneer clothing (see Clothing Ideas and Patterns)</li>
+                    <li>One 5-gallon bucket with lid that fits snugly and is easy to remove — this will hold your gear and will also be your seat</li>
+                    <li>1 lightweight jacket or sweatshirt</li>
+                    <li>1 rain poncho, rain gear, or 2 heavy-duty plastic bags (30-gallon size)</li>
+                    <li>1 or 2 pairs of athletic-type or hiking shoes that are sturdy and broken in</li>
+                    <li>4–5 cotton outer socks (more if rainy weather expected) and 3–4 thin nylon liner socks under cotton socks to prevent blisters (knee-high socks preferred to prevent bug bites and scrapes)</li>
+                    <li>2–3 sets of underclothing</li>
+                    <li>Pajamas</li>
+                    <li>1 or 2 bandanas (Stake provides)</li>
+                    <li>1 pair soft leather gloves or garden gloves with non-slip grips for handcart pulling</li>
+                    <li>Personal hygiene needs</li>
+                    <li>1 small flashlight with extra batteries</li>
+                    <li>1 washcloth and small hand towel</li>
+                    <li>1 travel-size package of wet towelettes</li>
+                    <li>1 small bottle of hand sanitizer</li>
+                    <li>1 small bottle of baby powder or Gold Bond</li>
+                    <li>Any prescription medications, clearly marked — give to medical staff for safe keeping</li>
+                    <li>Sunscreen (SPF 30+)</li>
+                    <li>Insect repellent (mosquito, tick, and deer fly protection)</li>
+                    <li>Chapstick (SPF 15+)</li>
+                    <li>Sunglasses</li>
+                    <li>Moleskin or 2nd Skin</li>
+                    <li>Small Book of Mormon in plastic zip-type bag</li>
+                    <li>Journal with pen or pencil</li>
+                    <li>Sack lunch for first day</li>
+                    <li>Refillable water bottle filled with water or sports drink — metal water bottles are best</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <span>Sleeping Gear</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation"><path fill="currentColor" d="M11.462 16.223a.75.75 0 0 0 1.076 0l5.25-5.4a.75.75 0 0 0-1.076-1.046l-4.71 4.85-4.714-4.85a.75.75 0 1 0-1.076 1.046l5.25 5.4z"/></svg>
+            </summary>
+            <div class="faq-answer">
+                <ul class="checklist">
+                    <li>1 warm sleeping bag, 1 sleeping pad (optional), and 1 pillow packed inside a large garbage sack</li>
+                    <li>Mark the bag with a piece of bandana from your Ma &amp; Pa</li>
+                    <li>These are transported to the campsite by your support team — <strong>not carried in your handcart</strong></li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <span>Do NOT Bring</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation"><path fill="currentColor" d="M11.462 16.223a.75.75 0 0 0 1.076 0l5.25-5.4a.75.75 0 0 0-1.076-1.046l-4.71 4.85-4.714-4.85a.75.75 0 1 0-1.076 1.046l5.25 5.4z"/></svg>
+            </summary>
+            <div class="faq-answer">
+                <ul class="checklist">
+                    <li>Valuables or jewelry</li>
+                    <li>Perfume, scented lotions, hairspray, aftershave, or cologne (bugs love it!)</li>
+                    <li>Knives (including sheathed knives), guns, or other weapons</li>
+                    <li>Footballs, Frisbees, card games, etc.</li>
+                    <li>Electronics — cell phones, gaming devices, music players (adults: limit use to trek-related communications)</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <span>Additional Items for Ma's &amp; Pa's — Extra Bucket</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation"><path fill="currentColor" d="M11.462 16.223a.75.75 0 0 0 1.076 0l5.25-5.4a.75.75 0 0 0-1.076-1.046l-4.71 4.85-4.714-4.85a.75.75 0 1 0-1.076 1.046l5.25 5.4z"/></svg>
+            </summary>
+            <div class="faq-answer">
+                <ul class="checklist">
+                    <li>Kleenex</li>
+                    <li>Hand sanitizer</li>
+                    <li>Toilet paper (and baggies for emergencies along the trail)</li>
+                    <li>Bug repellent and Vicks VapoRub</li>
+                    <li>Safety pins</li>
+                    <li>Extra flashlight with batteries</li>
+                    <li>Consecrated oil</li>
+                    <li>Sharpie marker</li>
+                    <li>Sunscreen</li>
+                    <li>A watch</li>
+                    <li>Duct tape (provided by Stake)</li>
+                    <li>Small basic first-aid kit — may include: antiseptic wipes, moleskin or duct tape for blisters, band-aids, Neosporin, hand wipes, scissors, baby powder or Crisco (for chafing), feminine products, sunscreen, insect spray (Vicks or cortisone works on bites), tweezers, pickles or pickle juice for dehydration, etc. (provided by Stake)</li>
+                    <li>Emergency feminine supplies (provided by Stake)</li>
+                    <li>Several garbage bags to tie on handcart for trash (provided by Stake)</li>
+                </ul>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                <span>Extra Items to Go on Handcart</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation"><path fill="currentColor" d="M11.462 16.223a.75.75 0 0 0 1.076 0l5.25-5.4a.75.75 0 0 0-1.076-1.046l-4.71 4.85-4.714-4.85a.75.75 0 1 0-1.076 1.046l5.25 5.4z"/></svg>
+            </summary>
+            <div class="faq-answer">
+                <ul class="checklist">
+                    <li>Bucket wrench to pry open 5-gallon buckets</li>
+                    <li>Two insulated 5-gallon wide-mouth water jugs with openings large enough for a block of ice</li>
+                    <li>One cooler for lunches</li>
+                    <li>One 5'×7', 8'×10', or 12'×12' tarp to keep dust or rain off handcarts — tarp can also be used as shelter by tilting the handcart backwards, attaching the tarp with twine, and tying it off to two tent poles, or combining with another cart</li>
+                    <li>2–24" bungee cords with plastic tips to secure the water cooler to the back of the handcart and tie down tarps</li>
+                    <li>2–3 squirt bottles or large spray misters to keep trekkers cool</li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</div>
+
+<!-- ════════════════════ CLOTHING ════════════════════ -->
+<div id="clothing" class="section">
+    <h2>Clothing Guidelines</h2>
+
+    <p style="margin-bottom:1.5rem; color:var(--color-text-secondary); line-height:1.6;">Three ways to get your pioneer clothing: thrift/modify, sew, or buy ready-made.</p>
+
+    <!-- Clothing approach tabs -->
+    <div class="clothing-tabs">
+        <button class="clothing-tab-btn active" onclick="showClothingTab('thrift')">
+            <div class="ctab-title">Thrift &amp; Modify</div>
+            <div class="ctab-desc">Find secondhand items and modify them. Most affordable option.</div>
+        </button>
+        <button class="clothing-tab-btn" onclick="showClothingTab('sew')">
+            <div class="ctab-title">Sew from Patterns</div>
+            <div class="ctab-desc">Use approved patterns to create authentic clothing. Most customizable.</div>
+        </button>
+        <button class="clothing-tab-btn" onclick="showClothingTab('buy')">
+            <div class="ctab-title">Buy Ready-Made</div>
+            <div class="ctab-desc">Purchase pre-made pioneer clothing from vendors. Quickest option.</div>
+        </button>
+    </div>
+
+    <!-- ── Thrift & Modify ── -->
+    <div id="cpanel-thrift" class="clothing-panel active">
+        <div class="card">
+            <h3>Thrift &amp; Modify</h3>
+            <p>This is the most economical approach and can be very successful! Look for natural fabrics (cotton, linen) in earth tones. Many modern items can be modified to look period-appropriate.</p>
+        </div>
+
+        <h3>Tips for Finding &amp; Modifying</h3>
+        <ul class="checklist">
+            <li><strong>Young Men:</strong> Look for cotton work shirts, suspenders, and dark cotton or canvas pants. Remove modern logos or labels.</li>
+            <li><strong>Young Women:</strong> Look for long cotton skirts, simple blouses, and calico or gingham fabrics. Add an apron to make it more authentic.</li>
+            <li>Check DI, Goodwill, and other thrift stores regularly — inventory changes weekly</li>
+            <li>Look in the men's section for women's items — oversized men's shirts can become pioneer dresses</li>
+            <li>Avoid polyester, rayon, and synthetic fabrics — they don't breathe well</li>
+            <li>Bring items to the clothing workshop on March 15 for modification help</li>
+        </ul>
+
+        <h3>Where to Look</h3>
+        <div class="resource-grid">
+            <a class="resource-card" href="https://www.deseretindustries.org" target="_blank" rel="noopener">
+                <div class="rc-name">Deseret Industries</div>
+                <div class="rc-desc">Check multiple locations for best selection</div>
+            </a>
+            <a class="resource-card" href="https://www.goodwill.org/shop/" target="_blank" rel="noopener">
+                <div class="rc-name">Goodwill</div>
+                <div class="rc-desc">Wide variety of clothing options</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- ── Sew from Patterns ── -->
+    <div id="cpanel-sew" class="clothing-panel">
+        <div class="card">
+            <h3>Sew from Patterns</h3>
+            <p>If you enjoy sewing or want the most authentic look, making your own clothing from patterns is a great option. Attend the clothing workshop on March 15 for help with patterns and measurements.</p>
+        </div>
+
+        <h3>Recommended Patterns</h3>
+        <ul class="checklist">
+            <li><strong>Young Men's Shirt:</strong> Simplicity 5441 or McCall's M7398</li>
+            <li><strong>Young Men's Pants:</strong> Simplicity 7216 or Butterick B6690</li>
+            <li><strong>Young Women's Dress:</strong> Simplicity 8397 or Butterick B4552</li>
+            <li><strong>Apron:</strong> Simplicity 8192 or any simple apron pattern</li>
+            <li><strong>Bonnet:</strong> Simplicity 8285 or search "pioneer bonnet pattern"</li>
+        </ul>
+
+        <h3>Fabric Recommendations</h3>
+        <ul class="checklist">
+            <li>100% cotton in earth tones (tan, brown, rust, green, blue)</li>
+            <li>Calico, gingham, or muslin for women's dresses</li>
+            <li>Canvas or heavy cotton for men's pants</li>
+            <li>Linen is authentic but expensive — save it for special touches</li>
+            <li>Avoid bright colors, modern prints, or anything with shine</li>
+        </ul>
+
+        <h3>Pattern &amp; Fabric Resources</h3>
+        <div class="resource-grid">
+            <a class="resource-card" href="https://www.joann.com" target="_blank" rel="noopener">
+                <div class="rc-name">Joann Fabrics</div>
+                <div class="rc-desc">Patterns and fabrics — watch for sales (40–60% off)</div>
+            </a>
+            <a class="resource-card" href="https://www.simplicity.com" target="_blank" rel="noopener">
+                <div class="rc-name">Simplicity Patterns</div>
+                <div class="rc-desc">Search for 'historical' or 'costume' patterns</div>
+            </a>
+            <a class="resource-card" href="https://www.fabric.com" target="_blank" rel="noopener">
+                <div class="rc-name">Fabric.com</div>
+                <div class="rc-desc">Online fabric shopping with good prices</div>
+            </a>
+            <a class="resource-card" href="https://www.pinterest.com/search/pins/?q=pioneer%20trek%20patterns" target="_blank" rel="noopener">
+                <div class="rc-name">Free Pioneer Patterns (Pinterest)</div>
+                <div class="rc-desc">Search 'pioneer trek patterns' for free options</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- ── Buy Ready-Made ── -->
+    <div id="cpanel-buy" class="clothing-panel">
+        <div class="card">
+            <h3>Buy Ready-Made</h3>
+            <p>If you prefer to buy ready-made clothing, several vendors specialize in pioneer trek attire. This is the quickest option but generally the most expensive. Order early to ensure availability and proper sizing.</p>
+        </div>
+
+        <h3>Sizing Tips</h3>
+        <ul class="checklist">
+            <li>Order clothing that is slightly larger — youth will grow between now and June</li>
+            <li>Loose-fitting clothing is more comfortable and historically accurate</li>
+            <li>Read vendor reviews about sizing — some run small or large</li>
+            <li>Allow 4–6 weeks for delivery, especially during trek season (May–July)</li>
+        </ul>
+
+        <h3>Recommended Vendors</h3>
+        <div class="resource-grid">
+            <a class="resource-card" href="https://www.pioneertrekstore.com" target="_blank" rel="noopener">
+                <div class="rc-name">Pioneer Trek Store</div>
+                <div class="rc-desc">Specializes in trek clothing — full outfits available</div>
+            </a>
+            <a class="resource-card" href="https://www.amazon.com/s?k=pioneer+costume" target="_blank" rel="noopener">
+                <div class="rc-name">Amazon — Pioneer Costumes</div>
+                <div class="rc-desc">Search 'pioneer costume' — read reviews carefully</div>
+            </a>
+            <a class="resource-card" href="https://www.etsy.com/search?q=pioneer+trek+clothing" target="_blank" rel="noopener">
+                <div class="rc-name">Etsy — Handmade Pioneer Clothing</div>
+                <div class="rc-desc">Many sellers offer custom pioneer clothing</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- ── Clothing Requirements ── -->
+    <h2 style="margin-top:2.5rem;">Clothing Requirements</h2>
+
+    <div class="card">
+        <h3>What's Required</h3>
+        <div class="req-columns">
+            <div class="req-col">
+                <h4>Young Men Must Have:</h4>
+                <ul class="req-list">
+                    <li>Long-sleeve cotton shirt (light color)</li>
+                    <li>Long pants (dark color, no jeans)</li>
+                    <li>Suspenders or belt</li>
+                    <li>Wide-brimmed hat or cap</li>
+                    <li>Bandana or neckerchief</li>
+                </ul>
+            </div>
+            <div class="req-col">
+                <h4>Young Women Must Have:</h4>
+                <ul class="req-list">
+                    <li>Long dress or skirt &amp; blouse (ankle length)</li>
+                    <li>Apron (full or half)</li>
+                    <li>Bonnet or pioneer-style hat</li>
+                    <li>Modest undergarments (no sports bras with thick straps showing)</li>
+                    <li>Long sleeves or layering piece for modesty</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-warning" style="margin-top:1rem;">
+        <h3>Important Guidelines</h3>
+        <ul style="margin-top:.5rem; padding-left:1.25rem;">
+            <li>All clothing must be in earth tones (tan, brown, rust, green, blue, gray) — no bright colors</li>
+            <li>Natural fabrics only (cotton, linen) — synthetics don't breathe and will be uncomfortable</li>
+            <li>No modern logos, zippers showing, or obvious modern features</li>
+            <li>Clothing will be inspected before departure — bring only approved items</li>
+            <li>You'll wear this clothing for 5 days straight — make sure it's comfortable!</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ════════════════════ UPDATES ════════════════════ -->
+<div id="updates" class="section">
+    <h2>Latest Updates</h2>
+
+    <div class="card update-card" data-date="2026-05-13">
+        <span class="update-badge"></span>
+        <h3>May 13 — Stake Trek Activity</h3>
+        <p>7:00 PM at the Stake Center. <strong>Only youth who are going on trek.</strong></p>
+    </div>
+
+    <div class="card update-card" data-date="2026-05-20">
+        <span class="update-badge"></span>
+        <h3>May 20 — Committee Meeting</h3>
+        <p>First half all combined, second half split into committees.</p>
+    </div>
+
+    <div class="card update-card" data-date="2026-04-22">
+        <span class="update-badge"></span>
+        <h3>April 22 — Stake Trek Activity</h3>
+        <p>7:00 PM at the Stake Center. All youth ages 11–18 invited.</p>
+    </div>
+
+    <div class="card update-card" data-date="2026-03-18">
+        <span class="update-badge"></span>
+        <h3>March 18 — Trek Stake Activity</h3>
+        <p>7:00 PM at the Stake Center. All youth ages 11–18 invited.</p>
+    </div>
+
+    <div class="card update-card" data-date="2026-02-18">
+        <span class="update-badge"></span>
+        <h3>February 18 — Kickoff Meeting</h3>
+        <p>7:00 PM at the Stake Center. All youth ages 11–18 invited.</p>
+    </div>
+</div>
+
+<!-- ════════════════════ CONTACT / FAQ ════════════════════ -->
+<div id="contact" class="section">
+    <h2>Contact / FAQ</h2>
+
+    <h3>Trek Coordinators</h3>
+    <div class="contact-grid">
+        <div class="contact-card">
+            <div class="name">Rich Davis</div>
+            <div class="role">Trek Coordinator</div>
+            <div class="phone"><a href="tel:8013764994">801-376-4994</a></div>
+        </div>
+        <div class="contact-card">
+            <div class="name">Christie Jessop</div>
+            <div class="role">Trek Coordinator</div>
+            <div class="phone"><a href="tel:8017877620">801-787-7620</a></div>
+        </div>
+        <div class="contact-card">
+            <div class="name">Brett Nance</div>
+            <div class="role">Medical Coordinator</div>
+            <div class="phone"><a href="tel:8018578084">801-857-8084</a></div>
+        </div>
+    </div>
+
+    <h2 style="margin-top:2rem;">Frequently Asked Questions</h2>
+
+    <div class="faq-accordion">
+        <details>
+            <summary>
+                <span>How much does trek cost?</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation"><path fill="currentColor" d="M11.462 16.223a.75.75 0 0 0 1.076 0l5.25-5.4a.75.75 0 0 0-1.076-1.046l-4.71 4.85-4.714-4.85a.75.75 0 1 0-1.076 1.046l5.25 5.4z"/></svg>
+            </summary>
+            <div class="faq-answer"><strong>There is no cost</strong> to individuals or wards.</div>
+        </details>
+
+        <details>
+            <summary>
+                <span>Who can attend?</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation"><path fill="currentColor" d="M11.462 16.223a.75.75 0 0 0 1.076 0l5.25-5.4a.75.75 0 0 0-1.076-1.046l-4.71 4.85-4.714-4.85a.75.75 0 1 0-1.076 1.046l5.25 5.4z"/></svg>
+            </summary>
+            <div class="faq-answer">Youth turning <strong>14 in 2026</strong> through <strong>graduating seniors</strong>.</div>
+        </details>
+
+        <details>
+            <summary>
+                <span>When is trek?</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation"><path fill="currentColor" d="M11.462 16.223a.75.75 0 0 0 1.076 0l5.25-5.4a.75.75 0 0 0-1.076-1.046l-4.71 4.85-4.714-4.85a.75.75 0 1 0-1.076 1.046l5.25 5.4z"/></svg>
+            </summary>
+            <div class="faq-answer"><strong>June 15 – 18, 2026</strong> (4 days).</div>
+        </details>
+
+        <details>
+            <summary>
+                <span>What kind of food will be provided?</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation"><path fill="currentColor" d="M11.462 16.223a.75.75 0 0 0 1.076 0l5.25-5.4a.75.75 0 0 0-1.076-1.046l-4.71 4.85-4.714-4.85a.75.75 0 1 0-1.076 1.046l5.25 5.4z"/></svg>
+            </summary>
+            <div class="faq-answer">We will be eating <strong>regular camp meals</strong> which will be hearty and filling. Snacks will be provided throughout the day.</div>
+        </details>
+
+        <details>
+            <summary>
+                <span>Do I need to bring a first aid kit?</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation"><path fill="currentColor" d="M11.462 16.223a.75.75 0 0 0 1.076 0l5.25-5.4a.75.75 0 0 0-1.076-1.046l-4.71 4.85-4.714-4.85a.75.75 0 1 0-1.076 1.046l5.25 5.4z"/></svg>
+            </summary>
+            <div class="faq-answer">No. First aid supplies will be provided in each handcart per Martin's Cove requirements.</div>
+        </details>
+
+        <details>
+            <summary>
+                <span>Can I bring my phone?</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation"><path fill="currentColor" d="M11.462 16.223a.75.75 0 0 0 1.076 0l5.25-5.4a.75.75 0 0 0-1.076-1.046l-4.71 4.85-4.714-4.85a.75.75 0 1 0-1.076 1.046l5.25 5.4z"/></svg>
+            </summary>
+            <div class="faq-answer">No. Please leave phones at home so you can fully experience the trek.</div>
+        </details>
+
+        <details>
+            <summary>
+                <span>How do I register?</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation"><path fill="currentColor" d="M11.462 16.223a.75.75 0 0 0 1.076 0l5.25-5.4a.75.75 0 0 0-1.076-1.046l-4.71 4.85-4.714-4.85a.75.75 0 1 0-1.076 1.046l5.25 5.4z"/></svg>
+            </summary>
+            <div class="faq-answer">Fill out the <a href="https://docs.google.com/forms/d/e/1FAIpQLScAUzPmOMOC3P26hQVncJnTtPgwwScbykFLBt_c7ZXGdYrzjw/viewform" target="_blank" rel="noopener">online registration form</a> and submit a signed <a href="permission-slip.pdf" download>permission slip</a>.</div>
+        </details>
+    </div>
+</div>
+
+<!-- ════════════════════ FOOTER ════════════════════ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-title">Springville Trek 2026</div>
+                <div class="footer-theme">"Walk with Me" — Moses 6:34</div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#" onclick="showTab('overview'); return false;">Overview</a></li>
+                        <li><a href="#" onclick="showTab('schedule'); return false;">Schedule &amp; Dates</a></li>
+                        <li><a href="#" onclick="showTab('forms'); return false;">Forms &amp; Permissions</a></li>
+                        <li><a href="#" onclick="showTab('prepare'); return false;">Prepare</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#" onclick="showTab('packing'); return false;">Packing List</a></li>
+                        <li><a href="#" onclick="showTab('clothing'); return false;">Clothing</a></li>
+                        <li><a href="permission-slip.pdf" download>Permission Slip</a></li>
+                        <li><a href="packing-list.html" target="_blank" rel="noopener">Printable Packing List</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="tel:8013764994">Rich Davis</a></li>
+                        <li><a href="tel:8017877620">Christie Jessop</a></li>
+                        <li><a href="tel:8018578084">Brett Nance</a></li>
+                        <li><a href="#" onclick="showTab('contact'); return false;">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Springville Stake &middot; The Church of Jesus Christ of Latter-day Saints
+        </div>
+    </div>
+</footer>
+
+<!-- ════════════════════ SCRIPT ════════════════════ -->
+<script>
+    // ── Hamburger menu ──
+    function toggleMenu() {
+        var bar = document.getElementById('tabBar');
+        var btn = document.getElementById('hamburgerBtn');
+        bar.classList.toggle('open');
+        btn.classList.toggle('open');
+    }
+
+    function showTab(tabId) {
+        // Hide all sections
+        document.querySelectorAll('.section').forEach(function(s) {
+            s.classList.remove('active');
+        });
+        // Deactivate all buttons
+        document.querySelectorAll('.tab-btn').forEach(function(b) {
+            b.classList.remove('active');
+        });
+        // Show selected section
+        document.getElementById(tabId).classList.add('active');
+        // Activate clicked button
+        var buttons = document.querySelectorAll('.tab-btn');
+        var tabNames = ['overview','schedule','forms','prepare','packing','clothing','updates','contact'];
+        var tabLabels = ['Overview','Schedule & Dates','Forms & Permissions','Prepare','Packing','Clothing','Updates','Contact / FAQ'];
+        for (var i = 0; i < tabNames.length; i++) {
+            if (tabNames[i] === tabId) {
+                buttons[i].classList.add('active');
+                document.getElementById('hamLabel').textContent = tabLabels[i];
+                break;
+            }
+        }
+        // Close mobile menu
+        document.getElementById('tabBar').classList.remove('open');
+        document.getElementById('hamburgerBtn').classList.remove('open');
+        // Scroll to top of content
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── Calendar ──
+    (function() {
+        var calEvents = [
+            { y:2026, m:1, d:18, label:'Kickoff Meeting', type:'meeting' },
+            { y:2026, m:2, d:18, label:'Trek Activity', type:'meeting' },
+            { y:2026, m:3, d:22, label:'Trek Activity', type:'meeting' },
+            { y:2026, m:4, d:13, label:'Trek Activity', type:'meeting' },
+            { y:2026, m:4, d:20, label:'Committee Mtg', type:'meeting' },
+            { y:2026, m:5, d:15, label:'Trek Day 1', type:'trek' },
+            { y:2026, m:5, d:16, label:'Trek Day 2', type:'trek' },
+            { y:2026, m:5, d:17, label:'Trek Day 3', type:'trek' },
+            { y:2026, m:5, d:18, label:'Trek Day 4', type:'trek' }
+        ];
+        var calMonth = 1; // February (0-indexed internally but stored as 1=Feb here for clarity)
+        var calYear = 2026;
+        var monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        var dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+        function getEventsForDay(y, m, d) {
+            return calEvents.filter(function(e){ return e.y===y && e.m===m && e.d===d; });
+        }
+
+        function renderCal() {
+            var grid = document.getElementById('calGrid');
+            var title = document.getElementById('calTitle');
+            title.textContent = monthNames[calMonth] + ' ' + calYear;
+            var html = '';
+            // Header row
+            for (var i = 0; i < 7; i++) {
+                html += '<div class="cal-header">' + dayNames[i] + '</div>';
+            }
+            // First day of month
+            var firstDay = new Date(calYear, calMonth, 1).getDay(); // 0=Sun
+            var daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+            var today = new Date();
+            today.setHours(0,0,0,0);
+            // Empty cells before first day
+            for (var e = 0; e < firstDay; e++) {
+                html += '<div class="cal-day empty"></div>';
+            }
+            // Day cells
+            for (var d = 1; d <= daysInMonth; d++) {
+                var isToday = (calYear === today.getFullYear() && calMonth === today.getMonth() && d === today.getDate());
+                html += '<div class="cal-day' + (isToday ? ' today' : '') + '">';
+                html += '<span class="day-num">' + d + '</span>';
+                var evts = getEventsForDay(calYear, calMonth, d);
+                for (var ei = 0; ei < evts.length; ei++) {
+                    html += '<span class="cal-event-dot type-' + evts[ei].type + '" title="' + evts[ei].label + '">' + evts[ei].label + '</span>';
+                }
+                html += '</div>';
+            }
+            // Trailing empty cells
+            var totalCells = firstDay + daysInMonth;
+            var remainder = totalCells % 7;
+            if (remainder > 0) {
+                for (var t = 0; t < 7 - remainder; t++) {
+                    html += '<div class="cal-day empty"></div>';
+                }
+            }
+            grid.innerHTML = html;
+        }
+
+        window.calNav = function(dir) {
+            calMonth += dir;
+            if (calMonth > 11) { calMonth = 0; calYear++; }
+            if (calMonth < 0) { calMonth = 11; calYear--; }
+            renderCal();
+        };
+
+        renderCal();
+    })();
+
+    // ── Clothing tab switcher ──
+    function showClothingTab(id) {
+        document.querySelectorAll('.clothing-panel').forEach(function(p) {
+            p.classList.remove('active');
+        });
+        document.querySelectorAll('.clothing-tab-btn').forEach(function(b) {
+            b.classList.remove('active');
+        });
+        document.getElementById('cpanel-' + id).classList.add('active');
+        var ids = ['thrift','sew','buy'];
+        var btns = document.querySelectorAll('.clothing-tab-btn');
+        for (var i = 0; i < ids.length; i++) {
+            if (ids[i] === id) { btns[i].classList.add('active'); break; }
+        }
+    }
+
+    // Auto-update badges based on today's date
+    (function() {
+        var today = new Date();
+        today.setHours(0, 0, 0, 0);
+        document.querySelectorAll('.update-card').forEach(function(card) {
+            var dateStr = card.getAttribute('data-date');
+            if (!dateStr) return;
+            var parts = dateStr.split('-');
+            var eventDate = new Date(parts[0], parts[1] - 1, parts[2]);
+            eventDate.setHours(23, 59, 59, 999); // event is "completed" after the day ends
+            var badge = card.querySelector('.update-badge');
+            if (today > eventDate) {
+                badge.textContent = 'Completed';
+                badge.classList.add('completed');
+            } else {
+                badge.textContent = 'Upcoming';
+                badge.classList.remove('completed');
+            }
+        });
+    })();
+</script>
+
+</body>
+</html>
