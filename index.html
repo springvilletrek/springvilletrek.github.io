@@ -76,7 +76,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center 30%;
             display: block;
+            transition: object-position .3s ease;
         }
         .hero-overlay {
             position: absolute;
@@ -511,6 +513,61 @@
         .clothing-panel { display: none; }
         .clothing-panel.active { display: block; }
 
+        /* ── Clothing Image Gallery ── */
+        .clothing-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        .clothing-gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            border: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .clothing-gallery img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 16px rgba(0,0,0,.1);
+        }
+
+        /* ── Image Lightbox Modal ── */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,.85);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .lightbox-overlay.open {
+            display: flex;
+        }
+        .lightbox-overlay img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 8px 40px rgba(0,0,0,.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0.25rem;
+        }
+
         /* ── Vendor / Resource Grid ── */
         .resource-grid {
             display: grid;
@@ -828,6 +885,13 @@
         @media (min-width: 600px) {
             .hero h1 { font-size: 2.625rem; }
             .section h2 { font-size: 2rem; }
+            .hero-img-wrap img { object-position: center 25%; }
+        }
+        @media (min-width: 1024px) {
+            .hero-img-wrap img { object-position: center 20%; }
+        }
+        @media (min-width: 1400px) {
+            .hero-img-wrap img { object-position: center 15%; }
         }
         @media (max-width: 840px) {
             .hero-overlay { padding: 2rem 1.5rem; }
@@ -927,7 +991,7 @@
 <!-- ════════════════════ HERO ════════════════════ -->
 <header class="hero">
     <div class="hero-img-wrap">
-        <img src="hero.jpg"
+        <img src="img/hero.jpg"
              alt="Walk with Me — 2026 Youth Theme">
     </div>
     <div class="hero-overlay">
@@ -963,12 +1027,18 @@
 
     <div class="card">
         <h3>Trek Theme — "Walk with Me"</h3>
-        <p><strong>Scripture:</strong> Moses 6:34 — <em>"And thou shalt abide in me, and I in you; therefore walk with me."</em></p>
+        <p>Become strengthened by the faith and sacrifice of the Pioneers to help me grow a closer relationship with the Savior.</p>
+        <p><strong>Scripture:</strong> <a href="https://www.churchofjesuschrist.org/study/scriptures/pgp/moses/6?lang=eng" target="_blank" rel="noopener">Moses 6:34</a> — <em>"And thou shalt abide in me, and I in you; therefore walk with me."</em></p>
     </div>
 
     <div class="card">
         <h3>Trek Song</h3>
-        <p>"I Will Walk with Jesus"</p>
+        <p><a href="https://www.churchofjesuschrist.org/media/music/songs/i-will-walk-with-jesus?lang=eng" target="_blank" rel="noopener">"I Will Walk with Jesus"</a></p>
+    </div>
+
+    <div class="card">
+        <h3>Trek Conference Talk</h3>
+        <p><a href="https://www.churchofjesuschrist.org/study/general-conference/1997/10/following-the-pioneers?lang=eng" target="_blank" rel="noopener">"Following the Pioneers"</a> — President Oaks, 1997</p>
     </div>
 
     <div class="card">
@@ -1022,10 +1092,9 @@
     <ul class="timeline">
         <li><strong>February 18</strong> — Kickoff Meeting, 7:00 PM at the Stake Center. All youth ages 11–18 invited.</li>
         <li><strong>March 18</strong> — Trek Stake Activity, 7:00 PM at the Stake Center. All youth ages 11–18 invited.</li>
+        <li><strong>March 18</strong> — All leader meeting at 8:30 PM at the Stake Center, following the youth activity.</li>
         <li><strong>April 22</strong> — Stake Trek Activity, 7:00 PM at the Stake Center. All youth ages 11–18 invited.</li>
-        <li><strong>May 13</strong> — Stake Trek Activity, 7:00 PM at the Stake Center. Only youth who are going on trek.</li>
-        <li><strong>May 20</strong> — Committee Meeting. First half all combined, second half split into committees.</li>
-        <li><strong>TBD</strong> — Leaders Training Meeting. Date to be announced.</li>
+        <li><strong>May 13</strong> — Stake Trek Activity, Learn who's in your family! 7:00 PM at the Stake Center. Only youth who are going on trek.</li>
     </ul>
 </div>
 
@@ -1044,7 +1113,7 @@
     <div class="card">
         <h3>Permission Slip</h3>
         <p>A signed permission slip is required for all youth attending trek. Please download, print, sign, and return to your ward leader.</p>
-        <a class="btn" href="permission-slip.pdf" download>
+        <a class="btn" href="2026%20Youth%20Trek.pdf" download>
             Download Permission Slip
         </a>
     </div>
@@ -1070,20 +1139,19 @@
     <ul class="timeline">
         <li><strong>February 18</strong> — Kickoff Meeting, 7:00 PM at the Stake Center. All youth ages 11–18 invited.</li>
         <li><strong>March 18</strong> — Trek Stake Activity, 7:00 PM at the Stake Center. All youth ages 11–18 invited.</li>
+        <li><strong>March 18</strong> — All leader meeting at 8:30 PM at the Stake Center, following the youth activity.</li>
         <li><strong>April 22</strong> — Stake Trek Activity, 7:00 PM at the Stake Center. All youth ages 11–18 invited.</li>
-        <li><strong>May 13</strong> — Stake Trek Activity, 7:00 PM at the Stake Center. Only youth who are going on trek.</li>
-        <li><strong>May 20</strong> — Committee Meeting. First half all combined, second half split into committees.</li>
-        <li><strong>TBD</strong> — Leaders Training Meeting. Date to be announced.</li>
+        <li><strong>May 13</strong> — Stake Trek Activity, Learn who's in your family! 7:00 PM at the Stake Center. Only youth who are going on trek.</li>
     </ul>
 
     <div class="card" style="margin-top:1.2rem;">
         <h3>Physical Preparation</h3>
-        <p>Trek involves walking several miles each day while pulling handcarts. Start preparing now by walking regularly and building endurance. Wear the shoes you plan to use on trek to break them in.</p>
+        <p>Trek involves walking 6–7 miles on Tuesday and Wednesday while pulling handcarts. Start preparing now by walking regularly and building endurance. Wear the shoes you plan to use on trek to break them in.</p>
     </div>
 
     <div class="card">
         <h3>Spiritual Preparation</h3>
-        <p>Study the 2026 youth theme — <em>"Walk with Me"</em> (Moses 6:34). Learn about pioneer history and the sacrifices early Latter-day Saints made. Come with a willing heart and a desire to grow closer to the Savior.</p>
+        <p>Study the 2026 youth theme — <em>"Walk with Me"</em> (<a href="https://www.churchofjesuschrist.org/study/scriptures/pgp/moses/6?lang=eng" target="_blank" rel="noopener">Moses 6:34</a>). Read <a href="https://www.churchofjesuschrist.org/study/general-conference/1997/10/following-the-pioneers?lang=eng" target="_blank" rel="noopener">"Following the Pioneers"</a> by President Oaks. Learn about pioneer history and the sacrifices early Latter-day Saints made. Come with a willing heart and a desire to grow closer to the Savior.</p>
     </div>
 </div>
 
@@ -1116,26 +1184,28 @@
                     <li>One 5-gallon bucket with lid that fits snugly and is easy to remove — this will hold your gear and will also be your seat</li>
                     <li>1 lightweight jacket or sweatshirt</li>
                     <li>1 rain poncho, rain gear, or 2 heavy-duty plastic bags (30-gallon size)</li>
-                    <li>1 or 2 pairs of athletic-type or hiking shoes that are sturdy and broken in</li>
-                    <li>4–5 cotton outer socks (more if rainy weather expected) and 3–4 thin nylon liner socks under cotton socks to prevent blisters (knee-high socks preferred to prevent bug bites and scrapes)</li>
-                    <li>2–3 sets of underclothing</li>
+                    <li>1 pair of athletic-type or hiking shoes that are sturdy and broken in</li>
+                    <li>4–5 cotton outer socks (more if rainy weather is expected)</li>
+                    <li>3–4 sets of underwear</li>
                     <li>Pajamas</li>
                     <li>1 or 2 bandanas (Stake provides)</li>
                     <li>1 pair soft leather gloves or garden gloves with non-slip grips for handcart pulling</li>
                     <li>Personal hygiene needs</li>
-                    <li>1 small flashlight with extra batteries</li>
+                    <li>1 small flashlight/headlamp, with extra batteries</li>
+                    <li>Small cross body bag or fanny pack</li>
                     <li>1 washcloth and small hand towel</li>
                     <li>1 travel-size package of wet towelettes</li>
                     <li>1 small bottle of hand sanitizer</li>
                     <li>1 small bottle of baby powder or Gold Bond</li>
-                    <li>Any prescription medications, clearly marked — give to medical staff for safe keeping</li>
+                    <li>Prescription medications you need, clearly marked. Give to your Ma and Pa if needed.</li>
                     <li>Sunscreen (SPF 30+)</li>
                     <li>Insect repellent (mosquito, tick, and deer fly protection)</li>
                     <li>Chapstick (SPF 15+)</li>
                     <li>Sunglasses</li>
                     <li>Moleskin or 2nd Skin</li>
-                    <li>Small Book of Mormon in plastic zip-type bag</li>
-                    <li>Journal with pen or pencil</li>
+                    <li>Scriptures: accessible on phone or small Book of Mormon</li>
+                    <li>Trek journal with pen. Journal will be provided by the Stake.</li>
+                    <li>If you decide to bring a cell phone — please limit to trek related usage</li>
                     <li>Sack lunch for first day</li>
                     <li>Refillable water bottle filled with water or sports drink — metal water bottles are best</li>
                 </ul>
@@ -1149,7 +1219,8 @@
             </summary>
             <div class="faq-answer">
                 <ul class="checklist">
-                    <li>1 warm sleeping bag, 1 sleeping pad (optional), and 1 pillow packed inside a large garbage sack</li>
+                    <li>1 warm sleeping bag, 1 sleeping pad, and 1 pillow packed inside a large garbage sack</li>
+                    <li>Blanket if desired</li>
                     <li>Mark the bag with a piece of bandana from your Ma &amp; Pa</li>
                     <li>These are transported to the campsite by your support team — <strong>not carried in your handcart</strong></li>
                 </ul>
@@ -1166,8 +1237,7 @@
                     <li>Valuables or jewelry</li>
                     <li>Perfume, scented lotions, hairspray, aftershave, or cologne (bugs love it!)</li>
                     <li>Knives (including sheathed knives), guns, or other weapons</li>
-                    <li>Footballs, Frisbees, card games, etc.</li>
-                    <li>Electronics — cell phones, gaming devices, music players (adults: limit use to trek-related communications)</li>
+                    <li>Electronics: gaming devices</li>
                 </ul>
             </div>
         </details>
@@ -1179,20 +1249,8 @@
             </summary>
             <div class="faq-answer">
                 <ul class="checklist">
-                    <li>Kleenex</li>
-                    <li>Hand sanitizer</li>
-                    <li>Toilet paper (and baggies for emergencies along the trail)</li>
-                    <li>Bug repellent and Vicks VapoRub</li>
-                    <li>Safety pins</li>
-                    <li>Extra flashlight with batteries</li>
-                    <li>Consecrated oil</li>
-                    <li>Sharpie marker</li>
-                    <li>Sunscreen</li>
-                    <li>A watch</li>
-                    <li>Duct tape (provided by Stake)</li>
-                    <li>Small basic first-aid kit — may include: antiseptic wipes, moleskin or duct tape for blisters, band-aids, Neosporin, hand wipes, scissors, baby powder or Crisco (for chafing), feminine products, sunscreen, insect spray (Vicks or cortisone works on bites), tweezers, pickles or pickle juice for dehydration, etc. (provided by Stake)</li>
-                    <li>Emergency feminine supplies (provided by Stake)</li>
-                    <li>Several garbage bags to tie on handcart for trash (provided by Stake)</li>
+                    <li>Bug repellent</li>
+                    <li>Small basic first-aid kit and may include the following: antiseptic wipes, moleskin or duct tape for blisters, band-aids, Neosporin, hand wipes, scissors, baby powder (for chafing), feminine products, sunscreen, insect spray, nail kit, etc. (provided by Stake)</li>
                 </ul>
             </div>
         </details>
@@ -1252,7 +1310,6 @@
             <li>Check DI, Goodwill, and other thrift stores regularly — inventory changes weekly</li>
             <li>Look in the men's section for women's items — oversized men's shirts can become pioneer dresses</li>
             <li>Avoid polyester, rayon, and synthetic fabrics — they don't breathe well</li>
-            <li>Bring items to the clothing workshop on March 15 for modification help</li>
         </ul>
 
         <h3>Where to Look</h3>
@@ -1272,7 +1329,7 @@
     <div id="cpanel-sew" class="clothing-panel">
         <div class="card">
             <h3>Sew from Patterns</h3>
-            <p>If you enjoy sewing or want the most authentic look, making your own clothing from patterns is a great option. Attend the clothing workshop on March 15 for help with patterns and measurements.</p>
+            <p>If you enjoy sewing or want the most authentic look, making your own clothing from patterns is a great option.</p>
         </div>
 
         <h3>Recommended Patterns</h3>
@@ -1347,13 +1404,13 @@
     </div>
 
     <!-- ── Clothing Requirements ── -->
-    <h2 style="margin-top:2.5rem;">Clothing Requirements</h2>
+    <h2 style="margin-top:2.5rem;">Clothing Suggestions</h2>
 
     <div class="card">
-        <h3>What's Required</h3>
+        <h3>What's Suggested</h3>
         <div class="req-columns">
             <div class="req-col">
-                <h4>Young Men Must Have:</h4>
+                <h4>Young Men Suggestions:</h4>
                 <ul class="req-list">
                     <li>Long-sleeve cotton shirt (light color)</li>
                     <li>Long pants (dark color, no jeans)</li>
@@ -1363,13 +1420,12 @@
                 </ul>
             </div>
             <div class="req-col">
-                <h4>Young Women Must Have:</h4>
+                <h4>Young Women Suggestions:</h4>
                 <ul class="req-list">
                     <li>Long dress or skirt &amp; blouse (ankle length)</li>
                     <li>Apron (full or half)</li>
                     <li>Bonnet or pioneer-style hat</li>
-                    <li>Modest undergarments (no sports bras with thick straps showing)</li>
-                    <li>Long sleeves or layering piece for modesty</li>
+                    <li>Long sleeves blouse</li>
                 </ul>
             </div>
         </div>
@@ -1378,12 +1434,18 @@
     <div class="card card-warning" style="margin-top:1rem;">
         <h3>Important Guidelines</h3>
         <ul style="margin-top:.5rem; padding-left:1.25rem;">
-            <li>All clothing must be in earth tones (tan, brown, rust, green, blue, gray) — no bright colors</li>
-            <li>Natural fabrics only (cotton, linen) — synthetics don't breathe and will be uncomfortable</li>
-            <li>No modern logos, zippers showing, or obvious modern features</li>
-            <li>Clothing will be inspected before departure — bring only approved items</li>
-            <li>You'll wear this clothing for 5 days straight — make sure it's comfortable!</li>
+            <li>You'll wear this clothing for 4 days straight — make sure it's comfortable!</li>
         </ul>
+    </div>
+
+    <h3>Clothing Examples</h3>
+    <div class="clothing-gallery">
+        <img src="img/IMG_9494.jpeg" alt="Pioneer trek clothing example" onclick="openLightbox(this.src)">
+        <img src="img/IMG_9498.jpeg" alt="Pioneer trek clothing example" onclick="openLightbox(this.src)">
+        <img src="img/IMG_9553.jpeg" alt="Pioneer trek clothing example" onclick="openLightbox(this.src)">
+        <img src="img/IMG_9556.jpeg" alt="Pioneer trek clothing example" onclick="openLightbox(this.src)">
+        <img src="img/IMG_9615.jpeg" alt="Pioneer trek clothing example" onclick="openLightbox(this.src)">
+        <img src="img/F2CE6010-AA4D-484C-9987-5AC9429E8190.jpeg" alt="Pioneer trek clothing example" onclick="openLightbox(this.src)">
     </div>
 </div>
 
@@ -1391,21 +1453,9 @@
 <div id="updates" class="section">
     <h2>Latest Updates</h2>
 
-    <div class="card update-card" data-date="2026-05-13">
+    <div class="card update-card" data-date="2026-02-18">
         <span class="update-badge"></span>
-        <h3>May 13 — Stake Trek Activity</h3>
-        <p>7:00 PM at the Stake Center. <strong>Only youth who are going on trek.</strong></p>
-    </div>
-
-    <div class="card update-card" data-date="2026-05-20">
-        <span class="update-badge"></span>
-        <h3>May 20 — Committee Meeting</h3>
-        <p>First half all combined, second half split into committees.</p>
-    </div>
-
-    <div class="card update-card" data-date="2026-04-22">
-        <span class="update-badge"></span>
-        <h3>April 22 — Stake Trek Activity</h3>
+        <h3>February 18 — Kickoff Meeting</h3>
         <p>7:00 PM at the Stake Center. All youth ages 11–18 invited.</p>
     </div>
 
@@ -1415,10 +1465,16 @@
         <p>7:00 PM at the Stake Center. All youth ages 11–18 invited.</p>
     </div>
 
-    <div class="card update-card" data-date="2026-02-18">
+    <div class="card update-card" data-date="2026-04-22">
         <span class="update-badge"></span>
-        <h3>February 18 — Kickoff Meeting</h3>
+        <h3>April 22 — Stake Trek Activity</h3>
         <p>7:00 PM at the Stake Center. All youth ages 11–18 invited.</p>
+    </div>
+
+    <div class="card update-card" data-date="2026-05-13">
+        <span class="update-badge"></span>
+        <h3>May 13 — Stake Trek Activity</h3>
+        <p>7:00 PM at the Stake Center. <strong>Only youth who are going on trek.</strong></p>
     </div>
 </div>
 
@@ -1493,7 +1549,7 @@
                 <span>Can I bring my phone?</span>
                 <svg class="faq-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation"><path fill="currentColor" d="M11.462 16.223a.75.75 0 0 0 1.076 0l5.25-5.4a.75.75 0 0 0-1.076-1.046l-4.71 4.85-4.714-4.85a.75.75 0 1 0-1.076 1.046l5.25 5.4z"/></svg>
             </summary>
-            <div class="faq-answer">No. Please leave phones at home so you can fully experience the trek.</div>
+            <div class="faq-answer">If you decide to bring a cell phone, please limit to trek related usage.</div>
         </details>
 
         <details>
@@ -1501,7 +1557,7 @@
                 <span>How do I register?</span>
                 <svg class="faq-chevron" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="presentation"><path fill="currentColor" d="M11.462 16.223a.75.75 0 0 0 1.076 0l5.25-5.4a.75.75 0 0 0-1.076-1.046l-4.71 4.85-4.714-4.85a.75.75 0 1 0-1.076 1.046l5.25 5.4z"/></svg>
             </summary>
-            <div class="faq-answer">Fill out the <a href="https://docs.google.com/forms/d/e/1FAIpQLScAUzPmOMOC3P26hQVncJnTtPgwwScbykFLBt_c7ZXGdYrzjw/viewform" target="_blank" rel="noopener">online registration form</a> and submit a signed <a href="permission-slip.pdf" download>permission slip</a>.</div>
+            <div class="faq-answer">Fill out the <a href="https://docs.google.com/forms/d/e/1FAIpQLScAUzPmOMOC3P26hQVncJnTtPgwwScbykFLBt_c7ZXGdYrzjw/viewform" target="_blank" rel="noopener">online registration form</a> and submit a signed <a href="2026%20Youth%20Trek.pdf" download>permission slip</a>.</div>
         </details>
     </div>
 </div>
@@ -1529,7 +1585,7 @@
                     <ul>
                         <li><a href="#" onclick="showTab('packing'); return false;">Packing List</a></li>
                         <li><a href="#" onclick="showTab('clothing'); return false;">Clothing</a></li>
-                        <li><a href="permission-slip.pdf" download>Permission Slip</a></li>
+                        <li><a href="2026%20Youth%20Trek.pdf" download>Permission Slip</a></li>
                         <li><a href="packing-list.html" target="_blank" rel="noopener">Printable Packing List</a></li>
                     </ul>
                 </div>
@@ -1596,7 +1652,6 @@
             { y:2026, m:2, d:18, label:'Trek Activity', type:'meeting' },
             { y:2026, m:3, d:22, label:'Trek Activity', type:'meeting' },
             { y:2026, m:4, d:13, label:'Trek Activity', type:'meeting' },
-            { y:2026, m:4, d:20, label:'Committee Mtg', type:'meeting' },
             { y:2026, m:5, d:15, label:'Trek Day 1', type:'trek' },
             { y:2026, m:5, d:16, label:'Trek Day 2', type:'trek' },
             { y:2026, m:5, d:17, label:'Trek Day 3', type:'trek' },
@@ -1740,7 +1795,28 @@
             }
         });
     })();
+
+    // ── Image Lightbox ──
+    function openLightbox(src) {
+        var overlay = document.getElementById('lightboxOverlay');
+        document.getElementById('lightboxImg').src = src;
+        overlay.classList.add('open');
+    }
+    function closeLightbox() {
+        var overlay = document.getElementById('lightboxOverlay');
+        overlay.classList.remove('open');
+        document.getElementById('lightboxImg').src = '';
+    }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+    });
 </script>
+
+<!-- Image Lightbox Modal -->
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
+    <button class="lightbox-close" aria-label="Close">&times;</button>
+    <img id="lightboxImg" src="" alt="Enlarged clothing example">
+</div>
 
 </body>
 </html>
