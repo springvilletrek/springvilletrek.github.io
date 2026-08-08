@@ -322,6 +322,73 @@
             color: #fff;
         }
 
+        /* ── Big Call-to-Action Button ── */
+        .cta-block {
+            text-align: center;
+            margin: 0 0 1.5rem;
+        }
+        .btn-big {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            width: 100%;
+            max-width: 32rem;
+            background-color: var(--color-primary-active);
+            color: #ffffff;
+            text-decoration: none;
+            font-family: var(--font-sans);
+            font-weight: 700;
+            font-size: 1.25rem;
+            line-height: 1.2;
+            padding: 1.1rem 1.75rem;
+            border: 0;
+            border-radius: var(--radius);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,.18);
+            transition: background-color ease .3s, transform ease .15s;
+        }
+        .btn-big:hover {
+            background-color: var(--color-primary);
+            color: #fff;
+            text-decoration: none;
+        }
+        .btn-big:active {
+            background-color: var(--color-primary-hover);
+            color: #fff;
+            transform: translateY(1px);
+        }
+        .btn-big svg {
+            flex-shrink: 0;
+            width: 1.35em;
+            height: 1.35em;
+            fill: currentColor;
+        }
+        .cta-note {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+
+        /* ── Responsive Video Embed ── */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            margin-top: 0.75rem;
+            background: var(--color-bg-alt);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        .video-embed iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         /* ── Timeline ── */
         .timeline { list-style: none; padding-left: 0; }
         .timeline li {
@@ -981,6 +1048,7 @@
 
             /* Buttons */
             .btn { font-size: 0.9rem; max-width: 100%; width: 100%; justify-content: center; }
+            .btn-big { font-size: 1.05rem; padding: 1rem 1.25rem; }
 
             /* Footer - handled in footer block */
         }
@@ -999,7 +1067,7 @@
         <h1>Springville Trek 2026</h1>
         <div class="subtitle">"Walk with Me" — June 15–18, 2026</div>
         <div class="scripture">"And thou shalt abide in me, and I in you; therefore walk with me." Moses 6:34</div>
-        <a class="hero-cta" href="#" onclick="showTab('forms'); return false;">Register for Trek</a>
+        <a class="hero-cta" href="https://drive.google.com/drive/folders/1IJqXHJ-X93M843MDcrBcCC9io-1sdcgG?usp=sharing" target="_blank" rel="noopener">Download Trek Photos</a>
     </div>
 </header>
 
@@ -1024,6 +1092,26 @@
 <!-- ════════════════════ OVERVIEW ════════════════════ -->
 <div id="overview" class="section active">
     <h2>Overview</h2>
+
+    <div class="cta-block">
+        <a class="btn-big" href="https://drive.google.com/drive/folders/1IJqXHJ-X93M843MDcrBcCC9io-1sdcgG?usp=sharing" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v10.6l3.3-3.3 1.4 1.4L11 17.4l-5.7-5.7 1.4-1.4L10 13.6V3h2zM5 19h14v2H5v-2z"/></svg>
+            Download Trek Photos
+        </a>
+        <span class="cta-note">Save your memorable moments from Trek.</span>
+    </div>
+
+    <div class="card">
+        <h3>Trek Video</h3>
+        <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/QkIS9FZ6RkM"
+                    title="Springville Utah Stake — Trek 2026"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+        </div>
+    </div>
 
     <div class="card">
         <h3>Trek Theme — "Walk with Me"</h3>
